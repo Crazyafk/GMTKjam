@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    enum Status{Playing, Stuck, Bust}
-    Status status;
+    public int id;
+
+    public enum Status{Playing, Stuck, Bust}
+    public Status status;
 
     public ValueDict doStick;
 
-    int points; //how many rounds this AI has won
+    public int points; //how many rounds this AI has won
 
     CardManager cardManager;
     GameManager gameManager;
     List<Card> deck;
-    int value;
+    public int value;
 
     void Start()
     {
@@ -32,24 +34,36 @@ public class AI : MonoBehaviour
         if(value > 21)
         {
             status = Status.Bust;
+            print("Bust!");
         }
     }
 
     public bool TakeTurn()
     {
+        print("AI #"+id.ToString()+"'s Turn!");
         if(status != Status.Playing){return false;}
 
         if(doStick.RollProb(value))
         {
             status = Status.Stuck;
             UpdateThings();
+            print("Stick!");
         }
         else
         {
-            deck.Add(gameManager.TakeCard());
+            Card newCard = gameManager.TakeCard();
+            deck.Add(newCard);
+            print("Twist! Drawn: "+newCard.name);
             UpdateThings();
+            print("Value: "+value);
         }
         if(status != Status.Playing){return false;}
         return true;
+    }
+    public void Win()
+    {
+        points += 1;
+        print("AI #"+id.ToString()+" Wins this round!");
+        UpdateThings();
     }
 }
