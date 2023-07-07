@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     CardManager cardManager;
     Queue<Card> toBeDealt;
 
+    public int howManyRounds;
+    int roundNo = 1;
     public AI aiOne, aiTwo, aiThree;
     int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
     int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
@@ -16,10 +18,8 @@ public class GameManager : MonoBehaviour
         cardManager = GetComponent<CardManager>();
 
         toBeDealt = new Queue<Card>();
-        for(int i = 0; i < 3; i++)
-        {
-            toBeDealt.Enqueue(cardManager.ChooseCard());
-        }
+        
+        NewRound();
     }
 
     public void NextTurn()
@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         if(aiOne.status != AI.Status.Playing && aiTwo.status != AI.Status.Playing && aiThree.status != AI.Status.Playing)
         {
             EndRound();
+        }
+        if(roundNo < howManyRounds)
+        {
+            NewRound();
         }
     }
 
@@ -80,5 +84,21 @@ public class GameManager : MonoBehaviour
     {
         toBeDealt.Enqueue(cardManager.ChooseCard());
         return(toBeDealt.Dequeue());
+    }
+
+    void NewRound()
+    {
+        roundNo++;
+
+        toBeDealt.Clear();
+
+        for(int i = 0; i < 3; i++)
+        {
+            toBeDealt.Enqueue(cardManager.ChooseCard());
+        }
+
+        aiOne.NewRound();
+        aiTwo.NewRound();
+        aiThree.NewRound();
     }
 }
