@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         {
             toBeDealt.Enqueue(cardManager.ChooseCard());
         }
-
+        whichAiDueTurn = 0;
         aiOne.NewRound();
         aiTwo.NewRound();
         aiThree.NewRound();

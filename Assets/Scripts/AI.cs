@@ -22,8 +22,6 @@ public class AI : MonoBehaviour
     {
         cardManager = GameObject.Find("GameManager").GetComponent<CardManager>();
         gameManager = cardManager.GetComponent<GameManager>();
-
-        NewRound();
     }
 
     void UpdateThings()
