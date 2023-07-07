@@ -30,4 +30,10 @@ public class GameManager : MonoBehaviour
 
         whichAiDueTurn = (whichAiDueTurn + 1) % 3;
     }
+
+    public Card TakeCard()
+    {
+        toBeDealt.Enqueue(cardManager.ChooseCard());
+        return(toBeDealt.Dequeue());
+    }
 }
