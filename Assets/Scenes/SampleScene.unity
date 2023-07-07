@@ -272,3 +272,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c8853d2e8503554285a0d35b796d355, type: 2}
   - {fileID: 11400000, guid: 8432b0ad2bfbf87438ba3805b12ebc22, type: 2}
   - {fileID: 11400000, guid: 760adce269f04a043ac1740156e8af25, type: 2}
+  reroll: {fileID: 11400000, guid: 4adaaa2e6cf8c2942898a5f1d9b77eac, type: 2}

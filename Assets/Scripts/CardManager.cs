@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public List<Card> allCards;
+    public ValueDict reroll;
 
     public Card ChooseCard()
     {
@@ -20,5 +21,18 @@ public class CardManager : MonoBehaviour
             value += card.value;
         }
         return(value);
+    }
+    public List<Card> GetStartingDeck()
+    {
+        List<Card> deck = new List<Card>();
+        deck.Add(ChooseCard());
+        deck.Add(ChooseCard());
+
+        int value = ValueDeck(deck);
+        if(reroll.RollProb(value))
+        {
+            return(GetStartingDeck());
+        }
+        return(deck);
     }
 }
