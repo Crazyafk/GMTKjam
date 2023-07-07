@@ -22,9 +22,8 @@ public class AI : MonoBehaviour
     {
         cardManager = GameObject.Find("GameManager").GetComponent<CardManager>();
         gameManager = cardManager.GetComponent<GameManager>();
-        deck = cardManager.GetStartingDeck();
 
-        UpdateThings();
+        NewRound();
     }
 
     void UpdateThings()
@@ -64,6 +63,12 @@ public class AI : MonoBehaviour
     {
         points += 1;
         print("AI #"+id.ToString()+" Wins this round!");
+        UpdateThings();
+    }
+    public void NewRound()
+    {
+        status = Status.Playing;
+        deck = cardManager.GetStartingDeck();
         UpdateThings();
     }
 }
