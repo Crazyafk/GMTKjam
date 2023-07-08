@@ -53,7 +53,7 @@ public class AI : MonoBehaviour
             status = Status.Stuck;
             UpdateThings();
             print("Stick!");
-            fxmanager.Stick();
+            fxmanager.Stick(id);
         }
         else
         {

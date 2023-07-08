@@ -951,6 +951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shuffle: {fileID: 8413294911323533572, guid: cdeab2ae2673f964e9713a71e7e145d7, type: 3}
   stick: {fileID: 8413294911323533572, guid: 7bb820557bf1a0c458b46b472f081347, type: 3}
+  spawnRootPath: /SpawnPoints/VFXSpawns
 --- !u!114 &589186252
 MonoBehaviour:
   m_ObjectHideFlags: 0
