@@ -9,6 +9,7 @@ public class AIUIInterface : MonoBehaviour
     public GameObject cardPrefab;
     Transform spawnOne, spawnTwo, spawnThree;
     GameObject cardOne, cardTwo, cardThree;
+    CardController cardConOne, cardConTwo, cardConThree;
     AI ai;
 
     void Start()
@@ -42,6 +43,8 @@ public class AIUIInterface : MonoBehaviour
             if(ai.deck[0] != null)
             {
                 cardOne = Instantiate(cardPrefab, spawnOne);
+                cardConOne = cardOne.GetComponent<CardController>();
+                cardConOne.CardData = ai.deck[0];
             }
         }
         if(showndeck[1] != ai.deck[1])
@@ -53,6 +56,8 @@ public class AIUIInterface : MonoBehaviour
             if(ai.deck[1] != null)
             {
                 cardTwo = Instantiate(cardPrefab, spawnTwo);
+                cardConTwo = cardTwo.GetComponent<CardController>();
+                cardConTwo.CardData = ai.deck[1];
             }
         }
         if(ai.deck.Count > 2)
@@ -66,8 +71,11 @@ public class AIUIInterface : MonoBehaviour
                 if(ai.deck[2] != null)
                 {
                     cardThree = Instantiate(cardPrefab, spawnThree);
+                    cardConThree = cardThree.GetComponent<CardController>();
+                    cardConThree.CardData = ai.deck[2];
                 }
             }
         }
+        showndeck = ai.deck;
     }
 }
