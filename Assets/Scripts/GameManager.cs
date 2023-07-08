@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     Queue<Card> toBeDealt;
 
     public int howManyRounds;
-    int roundNo = 1;
+    int roundNo = 0;
     public AI aiOne, aiTwo, aiThree;
-    int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
+    public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
     int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
     
     void Start()
@@ -43,10 +43,6 @@ public class GameManager : MonoBehaviour
         {
             EndRound();
         }
-        if(roundNo < howManyRounds)
-        {
-            NewRound();
-        }
     }
 
     void EndRound()
@@ -78,6 +74,13 @@ public class GameManager : MonoBehaviour
         print(aiOne.points);
         print(aiTwo.points);
         print(aiThree.points);
+
+        if(roundNo < howManyRounds)
+        {
+            NewRound();
+        }else{
+            EndGame();
+        }
     }
 
     public Card TakeCard()
@@ -100,5 +103,32 @@ public class GameManager : MonoBehaviour
         aiOne.NewRound();
         aiTwo.NewRound();
         aiThree.NewRound();
+    }
+
+    void EndGame()
+    {
+        int highestPoints = aiOne.points;
+        int winningAIid = 1;
+
+        if(aiTwo.points > highestPoints)
+        {
+            highestPoints = aiTwo.points;
+            winningAIid = 2;
+        }
+        if(aiThree.points > highestPoints)
+        {
+            highestPoints = aiThree.points;
+            winningAIid = 3;
+        }
+
+        print("Game Over!");
+        print("AI #"+winningAIid+" Wins!");
+
+        if(winningAIid - 1 == whichAiIsPlayer)
+        {
+            print("Player Wins!");
+        }else{
+            print("Player Loses!");
+        }
     }
 }

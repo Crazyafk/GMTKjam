@@ -439,10 +439,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af38d3821a3ec64fb2dd9a2218b2e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  howManyRounds: 0
+  howManyRounds: 5
   aiOne: {fileID: 1896319109}
   aiTwo: {fileID: 599395985}
   aiThree: {fileID: 481270288}
+  whichAiIsPlayer: 0
 --- !u!1 &599395984
 GameObject:
   m_ObjectHideFlags: 0
