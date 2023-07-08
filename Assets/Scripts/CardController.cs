@@ -35,7 +35,7 @@ public class CardController : MonoBehaviour
     {
         if(sliding != 0)
         {
-            transform.position = Vector3.Lerp(slideOrigin, slideDestination, slidetimer / slidetime);
+            transform.position = Utility.SmoothLerp(slideOrigin, slideDestination, slidetimer / slidetime);
 
             slidetimer += Time.deltaTime;
             if(slidetimer >= slidetime)
