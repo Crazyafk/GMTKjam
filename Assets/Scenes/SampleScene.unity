@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 589186248}
   - component: {fileID: 589186249}
   - component: {fileID: 589186250}
+  - component: {fileID: 589186251}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -882,6 +883,19 @@ MonoBehaviour:
   aiTwo: {fileID: 599395985}
   aiThree: {fileID: 481270288}
   whichAiIsPlayer: 0
+--- !u!114 &589186251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589186247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cd8a30bd0f9f84f9c38c559f86e10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shuffle: {fileID: 8413294911323533572, guid: cdeab2ae2673f964e9713a71e7e145d7, type: 3}
 --- !u!1 &599395984
 GameObject:
   m_ObjectHideFlags: 0

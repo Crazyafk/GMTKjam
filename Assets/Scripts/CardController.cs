@@ -14,17 +14,25 @@ public class CardController : MonoBehaviour
         }
     }
     public float timeToFlip; //How much time the card should wait from awake to flipping to front
+    public bool doFlipSound; //Make flip sound when flipping?
     SpriteRenderer cardFront;
     Animator animator;
+    AudioSource audio;
+
     void Awake()
     {
         cardFront = transform.Find("front").GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
 
         Invoke("FlipToFront", timeToFlip);
     }
     void FlipToFront()
     {
         animator.SetBool("showFront", true);
+        if(doFlipSound)
+        {
+            audio.Play();
+        }
     }
 }

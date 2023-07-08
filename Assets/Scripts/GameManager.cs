@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     CardManager cardManager;
+    FXManager fxmanager;
     Queue<Card> toBeDealt;
 
     public int howManyRounds;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cardManager = GetComponent<CardManager>();
+        fxmanager = GetComponent<FXManager>();
 
         toBeDealt = new Queue<Card>();
         
@@ -103,6 +105,8 @@ public class GameManager : MonoBehaviour
         aiOne.NewRound();
         aiTwo.NewRound();
         aiThree.NewRound();
+
+        fxmanager.Shuffle();
     }
 
     void EndGame()

@@ -79,6 +79,7 @@ public class AIUIInterface : MonoBehaviour
                     cardThree = Instantiate(cardPrefab, spawnThree);
                     cardConThree = cardThree.GetComponent<CardController>();
                     cardConThree.CardData = ai.deck[2];
+                    cardConThree.doFlipSound = true;
                 }
             }
             showndeck[2] = ai.deck[2];
@@ -104,6 +105,7 @@ public class AIUIInterface : MonoBehaviour
                     cardFour = Instantiate(cardPrefab, spawnFour);
                     cardConFour = cardFour.GetComponent<CardController>();
                     cardConFour.CardData = ai.deck[3];
+                    cardConFour.doFlipSound = true;
                 }
             }
             showndeck[3] = ai.deck[3];
@@ -129,6 +131,7 @@ public class AIUIInterface : MonoBehaviour
                     cardFive = Instantiate(cardPrefab, spawnFive);
                     cardConFive = cardFive.GetComponent<CardController>();
                     cardConFive.CardData = ai.deck[4];
+                    cardConFive.doFlipSound = true;
                 }
             }
             showndeck[4] = ai.deck[4];
@@ -154,6 +157,7 @@ public class AIUIInterface : MonoBehaviour
                     cardSix = Instantiate(cardPrefab, spawnSix);
                     cardConSix = cardSix.GetComponent<CardController>();
                     cardConSix.CardData = ai.deck[5];
+                    cardConSix.doFlipSound = true;
                 }
             }
             showndeck[5] = ai.deck[5];
@@ -179,6 +183,7 @@ public class AIUIInterface : MonoBehaviour
                     cardSeven = Instantiate(cardPrefab, spawnSeven);
                     cardConSeven = cardSeven.GetComponent<CardController>();
                     cardConSeven.CardData = ai.deck[6];
+                    cardConSeven.doFlipSound = true;
                 }
             }
             showndeck[6] = ai.deck[6];
