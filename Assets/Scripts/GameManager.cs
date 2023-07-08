@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     CardManager cardManager;
     FXManager fxmanager;
     UIManager uimanager;
+    SuspicionMeter suspicionMeter;
     public Queue<Card> toBeDealt;
 
     public int howManyRounds;
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
         cardManager = GetComponent<CardManager>();
         fxmanager = GetComponent<FXManager>();
         uimanager = GetComponent<UIManager>();
+
+        suspicionMeter = GameObject.Find("/Canvas/SuspicionMeter").GetComponent<SuspicionMeter>();
 
         toBeDealt = new Queue<Card>();
         
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         }
 
         uimanager.UpdateThings();
+        suspicionMeter.NextTurn();
     }
 
     void EndRound()
@@ -167,6 +171,8 @@ public class GameManager : MonoBehaviour
     }
     void SwapCards(int a, int b)
     {
+        if(!suspicionMeter.TrySwap()){return;}
+
         Card[] tempArray = new Card[3];
         tempArray[2] = toBeDealt.Dequeue();
         tempArray[1] = toBeDealt.Dequeue();
