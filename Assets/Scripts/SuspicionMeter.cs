@@ -40,11 +40,12 @@ public class SuspicionMeter : MonoBehaviour
     }
     public void NextTurn()
     {
-        SetSuspicion(suspicion - perTurnDecay);
+        suspicion -= perTurnDecay;
         if(suspicion < 0)
         {
-            SetSuspicion(0);
+            suspicion = 0;
         }
+        SetSuspicion(suspicion);
     }
     public bool TrySwap()
     {

@@ -34,17 +34,19 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
+        bool doAnotherTurn = false;
+
         if(whichAiDueTurn == 0)
         {
-            aiOne.TakeTurn();
+            if(!aiOne.TakeTurn()){doAnotherTurn = true;}
         }
         if(whichAiDueTurn == 1)
         {
-            aiTwo.TakeTurn();
+            if(!aiTwo.TakeTurn()){doAnotherTurn = true;}
         }
         if(whichAiDueTurn == 2)
         {
-            aiThree.TakeTurn();
+            if(!aiThree.TakeTurn()){doAnotherTurn = true;}
         }
 
         whichAiDueTurn = (whichAiDueTurn + 1) % 3;
@@ -55,7 +57,9 @@ public class GameManager : MonoBehaviour
         }
 
         uimanager.UpdateThings();
-        suspicionMeter.NextTurn();
+
+        if(doAnotherTurn){NextTurn();}
+        else{suspicionMeter.NextTurn();}
     }
 
     void EndRound()
