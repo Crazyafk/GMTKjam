@@ -79,5 +79,12 @@ public class AIUIInterface : MonoBehaviour
             }
             showndeck[2] = ai.deck[2];
         }
+        else
+        {
+            if(cardThree != null)
+            {
+                Destroy(cardThree);
+            }
+        }
     }
 }
