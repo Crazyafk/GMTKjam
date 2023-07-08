@@ -15,13 +15,15 @@ public class AI : MonoBehaviour
 
     CardManager cardManager;
     GameManager gameManager;
-    List<Card> deck;
+    AIUIInterface aIUIInterface;
+    public List<Card> deck;
     public int value;
 
     void Start()
     {
         cardManager = GameObject.Find("GameManager").GetComponent<CardManager>();
         gameManager = cardManager.GetComponent<GameManager>();
+        aIUIInterface = GetComponent<AIUIInterface>();
 
         deck = new List<Card>();
     }
@@ -35,6 +37,8 @@ public class AI : MonoBehaviour
             status = Status.Bust;
             print("Bust!");
         }
+
+        aIUIInterface.UpdateUI();
     }
 
     public bool TakeTurn()

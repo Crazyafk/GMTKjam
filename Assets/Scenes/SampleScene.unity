@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481270289}
   - component: {fileID: 481270288}
+  - component: {fileID: 481270290}
   m_Layer: 0
   m_Name: AIthree
   m_TagString: Untagged
@@ -256,6 +257,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481270290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481270287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e1ae71c0507947b1aad67f9ae9986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRootPath: /SpawnPoints/AIThreeCards
+  cardPrefab: {fileID: 3383489815027705525, guid: 843b4da51692c654f9c56e8520b1b183, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599395986}
   - component: {fileID: 599395985}
+  - component: {fileID: 599395987}
   m_Layer: 0
   m_Name: AItwo
   m_TagString: Untagged
@@ -645,6 +661,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &599395987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599395984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e1ae71c0507947b1aad67f9ae9986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRootPath: /SpawnPoints/AITwoCards
+  cardPrefab: {fileID: 3383489815027705525, guid: 843b4da51692c654f9c56e8520b1b183, type: 3}
 --- !u!1 &731147217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1896319110}
   - component: {fileID: 1896319109}
+  - component: {fileID: 1896319111}
   m_Layer: 0
   m_Name: AIone
   m_TagString: Untagged
@@ -1556,6 +1587,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1896319111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896319108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e1ae71c0507947b1aad67f9ae9986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRootPath: /SpawnPoints/AIOneCards
+  cardPrefab: {fileID: 3383489815027705525, guid: 843b4da51692c654f9c56e8520b1b183, type: 3}
 --- !u!1 &2024170996
 GameObject:
   m_ObjectHideFlags: 0
