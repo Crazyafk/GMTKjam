@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     CardManager cardManager;
     FXManager fxmanager;
     UIManager uimanager;
+    SuspicionMeter suspicionMeter;
     public Queue<Card> toBeDealt;
 
     public int howManyRounds;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
         fxmanager = GetComponent<FXManager>();
         uimanager = GetComponent<UIManager>();
 
+        suspicionMeter = GameObject.Find("/Canvas/SuspicionMeter").GetComponent<SuspicionMeter>();
+
         toBeDealt = new Queue<Card>();
         
         uimanager.UpdateThings();
@@ -31,17 +34,19 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
+        bool doAnotherTurn = false;
+
         if(whichAiDueTurn == 0)
         {
-            aiOne.TakeTurn();
+            if(!aiOne.TakeTurn()){doAnotherTurn = true;}
         }
         if(whichAiDueTurn == 1)
         {
-            aiTwo.TakeTurn();
+            if(!aiTwo.TakeTurn()){doAnotherTurn = true;}
         }
         if(whichAiDueTurn == 2)
         {
-            aiThree.TakeTurn();
+            if(!aiThree.TakeTurn()){doAnotherTurn = true;}
         }
 
         whichAiDueTurn = (whichAiDueTurn + 1) % 3;
@@ -52,6 +57,9 @@ public class GameManager : MonoBehaviour
         }
 
         uimanager.UpdateThings();
+
+        if(doAnotherTurn){NextTurn();}
+        else{suspicionMeter.NextTurn();}
     }
 
     void EndRound()
@@ -167,6 +175,8 @@ public class GameManager : MonoBehaviour
     }
     void SwapCards(int a, int b)
     {
+        if(!suspicionMeter.TrySwap()){return;}
+
         Card[] tempArray = new Card[3];
         tempArray[2] = toBeDealt.Dequeue();
         tempArray[1] = toBeDealt.Dequeue();

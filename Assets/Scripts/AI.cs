@@ -53,7 +53,7 @@ public class AI : MonoBehaviour
             status = Status.Stuck;
             UpdateThings();
             print("Stick!");
-            fxmanager.Stick();
+            fxmanager.Stick(id);
         }
         else
         {
@@ -63,7 +63,6 @@ public class AI : MonoBehaviour
             UpdateThings();
             print("Value: "+value);
         }
-        if(status != Status.Playing){return false;}
         return true;
     }
     public void Win()
