@@ -864,7 +864,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 279c897a7bf21c540a02896bfd633ad9, type: 2}
   - {fileID: 11400000, guid: 9fdf6a3f91ef4c94b8465087b98369a0, type: 2}
   reroll: {fileID: 11400000, guid: 4adaaa2e6cf8c2942898a5f1d9b77eac, type: 2}
-  onlyDrawTwos: 1
+  onlyDrawTwos: 0
 --- !u!114 &589186250
 MonoBehaviour:
   m_ObjectHideFlags: 0
