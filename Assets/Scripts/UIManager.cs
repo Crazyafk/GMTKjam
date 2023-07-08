@@ -54,14 +54,17 @@ public class UIManager : MonoBehaviour
 
         cardGThree = Instantiate(cardPrefab, spawnThree);
         cardThree = cardGThree.GetComponent<CardController>();
+        cardGThree.AddComponent<DealerCard>();
         cardThree.CardData = viewCards[0];
 
         cardGTwo = Instantiate(cardPrefab, spawnTwo);
         cardTwo = cardGTwo.GetComponent<CardController>();
+        cardGTwo.AddComponent<DealerCard>();
         cardTwo.CardData = viewCards[1];
 
         cardGOne = Instantiate(cardPrefab, spawnOne);
         cardOne = cardGOne.GetComponent<CardController>();
+        cardGOne.AddComponent<DealerCard>();
         cardOne.CardData = viewCards[2];
     }
     public void SlideDealerCards(Card _card)
@@ -80,6 +83,7 @@ public class UIManager : MonoBehaviour
 
         cardGOne = Instantiate(cardPrefab, spawnOne);
         cardOne = cardGOne.GetComponent<CardController>();
+        cardGOne.AddComponent<DealerCard>();
         cardOne.CardData = _card;
     }
     public void EndRound()
