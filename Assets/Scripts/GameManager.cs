@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
     [HideInInspector]
     public int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
+    int cardClickLast = 0; //which card was clicked last? for card swapping
     
     void Start()
     {
@@ -145,5 +146,37 @@ public class GameManager : MonoBehaviour
         }else{
             print("Player Loses!");
         }
+    }
+
+    public void ClickCard(int id)
+    {
+        if(cardClickLast == 0)
+        {
+            cardClickLast = id;
+        }
+        else if(cardClickLast == id)
+        {
+            cardClickLast = 0;
+        }
+        else
+        {
+            SwapCards(id, cardClickLast);
+            cardClickLast = 0;
+        }
+    }
+    void SwapCards(int a, int b)
+    {
+        Card[] tempArray = new Card[3];
+        tempArray[2] = toBeDealt.Dequeue();
+        tempArray[1] = toBeDealt.Dequeue();
+        tempArray[0] = toBeDealt.Dequeue();
+
+        Card tempCard = tempArray[a-1];
+        tempArray[a-1] = tempArray[b-1];
+        tempArray[b-1] = tempCard;
+
+        toBeDealt.Enqueue(tempArray[2]);
+        toBeDealt.Enqueue(tempArray[1]);
+        toBeDealt.Enqueue(tempArray[0]);
     }
 }

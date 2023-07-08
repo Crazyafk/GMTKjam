@@ -5,8 +5,15 @@ using UnityEngine.EventSystems;
 
 public class DealerCard : MonoBehaviour, IPointerClickHandler
 {
+    public int id;
+    GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("wooo");
+        gameManager.ClickCard(id);
     }
 }
