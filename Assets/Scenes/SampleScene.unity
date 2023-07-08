@@ -930,7 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRootPath: /SpawnPoints/DealerCards
   slideRightTime: 0.5
-  swapSlideTime: 0
+  swapSlideTime: 0.5
   cardPrefab: {fileID: 3383489815027705525, guid: 843b4da51692c654f9c56e8520b1b183, type: 3}
 --- !u!1 &599395984
 GameObject:

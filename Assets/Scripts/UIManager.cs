@@ -107,16 +107,34 @@ public class UIManager : MonoBehaviour
         Vector3 aPos = Vector3.zero;
         Vector3 bPos = Vector3.zero;
 
+        GameObject cardGTempA = null;
+        GameObject cardGTempB = null;
+
+        CardController cardTempA = null;
+        CardController cardTempB = null;
+
+        DealerCard cardDTempA = null;
+        DealerCard cardDTempB = null;
+
         switch(a)
         {
             case 1:
                 aPos = spawnOne.position;
+                cardGTempA = cardGOne;
+                cardTempA = cardOne;
+                cardDTempA = cardDOne;
                 break;
             case 2:
                 aPos = spawnTwo.position;
+                cardGTempA = cardGTwo;
+                cardTempA = cardTwo;
+                cardDTempA = cardDTwo;
                 break;
             case 3:
                 aPos = spawnThree.position;
+                cardGTempA = cardGThree;
+                cardTempA = cardThree;
+                cardDTempA = cardDThree;
                 break;
             default:
                 print("shit a");
@@ -128,14 +146,36 @@ public class UIManager : MonoBehaviour
             case 1:
                 bPos = spawnOne.position;
                 cardOne.SlideRight(bPos, aPos, swapSlideTime);
+                cardGTempB = cardGOne;
+                cardTempB = cardOne;
+                cardDTempB = cardDOne;
+
+                cardGOne = cardGTempA;
+                cardOne = cardTempA;
+                cardDOne = cardDTempA;
+
                 break;
             case 2:
                 bPos = spawnTwo.position;
                 cardTwo.SlideRight(bPos, aPos, swapSlideTime);
+                cardGTempB = cardGTwo;
+                cardTempB = cardTwo;
+                cardDTempB = cardDTwo;
+
+                cardGTwo = cardGTempA;
+                cardTwo = cardTempA;
+                cardDTwo = cardDTempA;
                 break;
             case 3:
                 bPos = spawnThree.position;
                 cardThree.SlideRight(bPos, aPos, swapSlideTime);
+                cardGTempB = cardGThree;
+                cardTempB = cardThree;
+                cardDTempB = cardDThree;
+
+                cardGThree = cardGTempA;
+                cardThree = cardTempA;
+                cardDThree = cardDTempA;
                 break;
             default:
                 print("shit b");
@@ -146,17 +186,29 @@ public class UIManager : MonoBehaviour
         {
             case 1:
                 cardOne.SlideRight(aPos, bPos, swapSlideTime);
+                cardGOne = cardGTempB;
+                cardOne = cardTempB;
+                cardDOne = cardDTempB;
                 break;
             case 2:
                 cardTwo.SlideRight(aPos, bPos, swapSlideTime);
+                cardGTwo = cardGTempB;
+                cardTwo = cardTempB;
+                cardDTwo = cardDTempB;
                 break;
             case 3:
                 cardThree.SlideRight(aPos, bPos, swapSlideTime);
+                cardGThree = cardGTempB;
+                cardThree = cardTempB;
+                cardDThree = cardDTempB;
                 break;
             default:
                 print("shit a");
                 print(a);
                 break;
         }
+        cardDOne.id = 1;
+        cardDTwo.id = 2;
+        cardDThree.id = 3;
     }
 }

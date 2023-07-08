@@ -178,5 +178,7 @@ public class GameManager : MonoBehaviour
         toBeDealt.Enqueue(tempArray[2]);
         toBeDealt.Enqueue(tempArray[1]);
         toBeDealt.Enqueue(tempArray[0]);
+
+        uimanager.SwapDealerCards(a,b);
     }
 }

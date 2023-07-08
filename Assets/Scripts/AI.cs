@@ -72,7 +72,6 @@ public class AI : MonoBehaviour
     public void NewRound()
     {
         status = Status.Playing;
-        print(deck);
         deck = cardManager.GetStartingDeck();
         UpdateThings();
     }
