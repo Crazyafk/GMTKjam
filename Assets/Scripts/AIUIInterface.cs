@@ -7,9 +7,9 @@ public class AIUIInterface : MonoBehaviour
     public List<Card> showndeck;
     public string spawnRootPath;
     public GameObject cardPrefab;
-    Transform spawnOne, spawnTwo, spawnThree;
-    GameObject cardOne, cardTwo, cardThree;
-    CardController cardConOne, cardConTwo, cardConThree;
+    Transform spawnOne, spawnTwo, spawnThree, spawnFour, spawnFive, spawnSix, spawnSeven;
+    GameObject cardOne, cardTwo, cardThree, cardFour, cardFive, cardSix, cardSeven;
+    CardController cardConOne, cardConTwo, cardConThree, cardConFour, cardConFive, cardConSix, cardConSeven;
     AI ai;
 
     void Start()
@@ -18,22 +18,24 @@ public class AIUIInterface : MonoBehaviour
         spawnOne = root.Find("CardSlotOne");
         spawnTwo = root.Find("CardSlotTwo");
         spawnThree = root.Find("CardSlotThree");
+        spawnFour = root.Find("CardSlotFour");
+        spawnFive = root.Find("CardSlotFive");
+        spawnSix = root.Find("CardSlotSix");
+        spawnSeven = root.Find("CardSlotSeven");
 
-        showndeck = new List<Card>(new Card[3]);
+        showndeck = new List<Card>(new Card[7]);
 
         ai = GetComponent<AI>();
     }
 
     public void UpdateUI()
     {
-        if(showndeck != ai.deck)
-        {
-            UpdateDeck();
-        }
+        UpdateDeck();
     }
 
     void UpdateDeck()
     {
+        //Slot 1
         if(showndeck[0] != ai.deck[0])
         {
             if(cardOne != null)
@@ -48,6 +50,7 @@ public class AIUIInterface : MonoBehaviour
             }
             showndeck[0] = ai.deck[0];
         }
+        //Slot 2
         if(showndeck[1] != ai.deck[1])
         {
             if(cardTwo != null)
@@ -62,6 +65,7 @@ public class AIUIInterface : MonoBehaviour
             }
             showndeck[1] = ai.deck[1];
         }
+        //Slot 3
         if(ai.deck.Count > 2)
         {
             if(showndeck[2] != ai.deck[2])
@@ -84,6 +88,106 @@ public class AIUIInterface : MonoBehaviour
             if(cardThree != null)
             {
                 Destroy(cardThree);
+            }
+        }
+        //Slot 4
+        if(ai.deck.Count > 3)
+        {
+            if(showndeck[3] != ai.deck[3])
+            {
+                if(cardFour != null)
+                {
+                    Destroy(cardFour);
+                }
+                if(ai.deck[3] != null)
+                {
+                    cardFour = Instantiate(cardPrefab, spawnFour);
+                    cardConFour = cardFour.GetComponent<CardController>();
+                    cardConFour.CardData = ai.deck[3];
+                }
+            }
+            showndeck[3] = ai.deck[3];
+        }
+        else
+        {
+            if(cardFour != null)
+            {
+                Destroy(cardFour);
+            }
+        }
+        //Slot 5
+        if(ai.deck.Count > 4)
+        {
+            if(showndeck[4] != ai.deck[4])
+            {
+                if(cardFive != null)
+                {
+                    Destroy(cardFive);
+                }
+                if(ai.deck[4] != null)
+                {
+                    cardFive = Instantiate(cardPrefab, spawnFive);
+                    cardConFive = cardFive.GetComponent<CardController>();
+                    cardConFive.CardData = ai.deck[4];
+                }
+            }
+            showndeck[4] = ai.deck[4];
+        }
+        else
+        {
+            if(cardFive != null)
+            {
+                Destroy(cardFive);
+            }
+        }
+        //Slot 6
+        if(ai.deck.Count > 5)
+        {
+            if(showndeck[5] != ai.deck[5])
+            {
+                if(cardSix != null)
+                {
+                    Destroy(cardSix);
+                }
+                if(ai.deck[5] != null)
+                {
+                    cardSix = Instantiate(cardPrefab, spawnSix);
+                    cardConSix = cardSix.GetComponent<CardController>();
+                    cardConSix.CardData = ai.deck[5];
+                }
+            }
+            showndeck[5] = ai.deck[5];
+        }
+        else
+        {
+            if(cardSix != null)
+            {
+                Destroy(cardSix);
+            }
+        }
+        //Slot 7
+        if(ai.deck.Count > 6)
+        {
+            if(showndeck[6] != ai.deck[6])
+            {
+                if(cardSeven != null)
+                {
+                    Destroy(cardSeven);
+                }
+                if(ai.deck[6] != null)
+                {
+                    cardSeven = Instantiate(cardPrefab, spawnSeven);
+                    cardConSeven = cardSeven.GetComponent<CardController>();
+                    cardConSeven.CardData = ai.deck[6];
+                }
+            }
+            showndeck[6] = ai.deck[6];
+        }
+        else
+        {
+            if(cardSeven != null)
+            {
+                Destroy(cardSeven);
             }
         }
     }
