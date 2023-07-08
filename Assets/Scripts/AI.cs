@@ -15,6 +15,7 @@ public class AI : MonoBehaviour
 
     CardManager cardManager;
     GameManager gameManager;
+    FXManager fxmanager;
     AIUIInterface aIUIInterface;
     public List<Card> deck;
     public int value;
@@ -23,6 +24,7 @@ public class AI : MonoBehaviour
     {
         cardManager = GameObject.Find("GameManager").GetComponent<CardManager>();
         gameManager = cardManager.GetComponent<GameManager>();
+        fxmanager = cardManager.GetComponent<FXManager>();
         aIUIInterface = GetComponent<AIUIInterface>();
 
         deck = new List<Card>();
@@ -51,6 +53,7 @@ public class AI : MonoBehaviour
             status = Status.Stuck;
             UpdateThings();
             print("Stick!");
+            fxmanager.Stick();
         }
         else
         {
