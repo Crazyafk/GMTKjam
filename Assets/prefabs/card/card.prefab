@@ -118,7 +118,7 @@ Transform:
   - {fileID: 9076092981745244736}
   - {fileID: 1965383124358936635}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5395482077075570352
 Animator:
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToFlip: 0.3
+  doFlipSound: 0
 --- !u!1 &6074067186076015900
 GameObject:
   m_ObjectHideFlags: 0
