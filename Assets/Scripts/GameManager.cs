@@ -6,21 +6,25 @@ public class GameManager : MonoBehaviour
 {
     CardManager cardManager;
     FXManager fxmanager;
-    Queue<Card> toBeDealt;
+    UIManager uimanager;
+    public Queue<Card> toBeDealt;
 
     public int howManyRounds;
     int roundNo = 0;
     public AI aiOne, aiTwo, aiThree;
     public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
-    int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
+    [HideInInspector]
+    public int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
     
     void Start()
     {
         cardManager = GetComponent<CardManager>();
         fxmanager = GetComponent<FXManager>();
+        uimanager = GetComponent<UIManager>();
 
         toBeDealt = new Queue<Card>();
         
+        uimanager.UpdateThings();
         NewRound();
     }
 
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
         {
             EndRound();
         }
+
+        uimanager.UpdateThings();
     }
 
     void EndRound()
@@ -77,6 +83,8 @@ public class GameManager : MonoBehaviour
         print(aiTwo.points);
         print(aiThree.points);
 
+        uimanager.EndRound();
+
         if(roundNo < howManyRounds)
         {
             NewRound();
@@ -87,7 +95,9 @@ public class GameManager : MonoBehaviour
 
     public Card TakeCard()
     {
-        toBeDealt.Enqueue(cardManager.ChooseCard());
+        Card newCard = cardManager.ChooseCard();
+        uimanager.SlideDealerCards(newCard);
+        toBeDealt.Enqueue(newCard);
         return(toBeDealt.Dequeue());
     }
 
@@ -107,6 +117,7 @@ public class GameManager : MonoBehaviour
         aiThree.NewRound();
 
         fxmanager.Shuffle();
+        uimanager.InitDealerCards();
     }
 
     void EndGame()

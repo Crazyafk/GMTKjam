@@ -18,6 +18,10 @@ public class CardController : MonoBehaviour
     SpriteRenderer cardFront;
     Animator animator;
     AudioSource audio;
+    int sliding; //0 - none, 1 - slide right
+    Vector3 slideOrigin, slideDestination;
+    float slidetime, slidetimer;
+    public bool testSlideTrigger;
 
     void Awake()
     {
@@ -27,6 +31,26 @@ public class CardController : MonoBehaviour
 
         Invoke("FlipToFront", timeToFlip);
     }
+    void Update()
+    {
+        if(sliding != 0)
+        {
+            transform.position = Utility.SmoothLerp(slideOrigin, slideDestination, slidetimer / slidetime);
+
+            slidetimer += Time.deltaTime;
+            if(slidetimer >= slidetime)
+            {
+                transform.position = slideDestination;
+                sliding = 0;
+            }
+        }
+
+        if(testSlideTrigger)
+        {
+            SlideRight(transform.position, transform.position + Vector3.right, 1f);
+            testSlideTrigger = false;
+        }
+    }
     void FlipToFront()
     {
         animator.SetBool("showFront", true);
@@ -34,5 +58,13 @@ public class CardController : MonoBehaviour
         {
             audio.Play();
         }
+    }
+    public void SlideRight(Vector3 _origin, Vector3 _dest, float _time)
+    {
+        sliding = 1;
+        slideOrigin = _origin;
+        slideDestination = _dest;
+        slidetime = _time;
+        slidetimer = 0f;
     }
 }
