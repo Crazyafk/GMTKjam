@@ -6,9 +6,13 @@ public class CardManager : MonoBehaviour
 {
     public List<Card> allCards;
     public ValueDict reroll;
+    [Header("TESTING VALUE ONLY. SET TO FALSE UNLESS TESTING.")]
+    public bool onlyDrawTwos;
 
     public Card ChooseCard()
     {
+        if(onlyDrawTwos){return(allCards[0]);}
+
         int val = Random.Range(0,allCards.Count);
 
         return(allCards[val]);
