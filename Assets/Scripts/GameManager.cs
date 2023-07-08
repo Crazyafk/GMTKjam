@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     CardManager cardManager;
     FXManager fxmanager;
     UIManager uimanager;
-    Queue<Card> toBeDealt;
+    public Queue<Card> toBeDealt;
 
     public int howManyRounds;
     int roundNo = 0;
@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
         print(aiTwo.points);
         print(aiThree.points);
 
+        uimanager.EndRound();
+
         if(roundNo < howManyRounds)
         {
             NewRound();
@@ -93,7 +95,9 @@ public class GameManager : MonoBehaviour
 
     public Card TakeCard()
     {
-        toBeDealt.Enqueue(cardManager.ChooseCard());
+        Card newCard = cardManager.ChooseCard();
+        uimanager.SlideDealerCards(newCard);
+        toBeDealt.Enqueue(newCard);
         return(toBeDealt.Dequeue());
     }
 
@@ -113,6 +117,7 @@ public class GameManager : MonoBehaviour
         aiThree.NewRound();
 
         fxmanager.Shuffle();
+        uimanager.InitDealerCards();
     }
 
     void EndGame()
