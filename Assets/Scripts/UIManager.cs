@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     public float slideRightTime;
     public float swapSlideTime;
     public GameObject cardPrefab;
+    Text valueOne, valueTwo, valueThree, pointsOne, pointsTwo, pointsThree;
 
     void Start()
     {
@@ -27,6 +29,13 @@ public class UIManager : MonoBehaviour
         spawnOne = root.Find("CardSlotOne");
         spawnTwo = root.Find("CardSlotTwo");
         spawnThree = root.Find("CardSlotThree");
+
+        valueOne = GameObject.Find("/Canvas/Value1").GetComponent<Text>();
+        valueTwo = GameObject.Find("/Canvas/Value2").GetComponent<Text>();
+        valueThree = GameObject.Find("/Canvas/Value3").GetComponent<Text>();
+        pointsOne = GameObject.Find("/Canvas/Points1").GetComponent<Text>();
+        pointsTwo = GameObject.Find("/Canvas/Points2").GetComponent<Text>();
+        pointsThree = GameObject.Find("/Canvas/Points3").GetComponent<Text>();
     }
     public void UpdateThings()
     {
@@ -49,6 +58,14 @@ public class UIManager : MonoBehaviour
             nextUpTwo.SetActive(false);
             nextUpThree.SetActive(true);
         }
+
+        //Text
+        valueOne.text = gameManager.aiOne.value.ToString();
+        valueTwo.text = gameManager.aiTwo.value.ToString();
+        valueThree.text = gameManager.aiThree.value.ToString();
+        pointsOne.text = gameManager.aiOne.points.ToString();
+        pointsTwo.text = gameManager.aiTwo.points.ToString();
+        pointsThree.text = gameManager.aiThree.points.ToString();
     }
     public void InitDealerCards()
     {

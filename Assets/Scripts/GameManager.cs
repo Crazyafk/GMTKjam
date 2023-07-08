@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         fxmanager.Shuffle();
         uimanager.InitDealerCards();
+        uimanager.UpdateThings();
     }
 
     void EndGame()
