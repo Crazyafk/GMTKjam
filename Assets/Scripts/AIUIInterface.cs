@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIUIInterface : MonoBehaviour
 {
-    List<Card> showndeck;
+    public List<Card> showndeck;
     public string spawnRootPath;
     public GameObject cardPrefab;
     Transform spawnOne, spawnTwo, spawnThree;
@@ -46,6 +46,7 @@ public class AIUIInterface : MonoBehaviour
                 cardConOne = cardOne.GetComponent<CardController>();
                 cardConOne.CardData = ai.deck[0];
             }
+            showndeck[0] = ai.deck[0];
         }
         if(showndeck[1] != ai.deck[1])
         {
@@ -59,6 +60,7 @@ public class AIUIInterface : MonoBehaviour
                 cardConTwo = cardTwo.GetComponent<CardController>();
                 cardConTwo.CardData = ai.deck[1];
             }
+            showndeck[1] = ai.deck[1];
         }
         if(ai.deck.Count > 2)
         {
@@ -75,7 +77,7 @@ public class AIUIInterface : MonoBehaviour
                     cardConThree.CardData = ai.deck[2];
                 }
             }
+            showndeck[2] = ai.deck[2];
         }
-        showndeck = ai.deck;
     }
 }
