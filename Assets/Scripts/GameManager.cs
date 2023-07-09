@@ -192,4 +192,10 @@ public class GameManager : MonoBehaviour
 
         uimanager.SwapDealerCards(a,b);
     }
+    public void Hint(bool isStick)
+    {
+        if(whichAiIsPlayer == 0){aiOne.Hint(isStick);}
+        if(whichAiIsPlayer == 1){aiTwo.Hint(isStick);}
+        if(whichAiIsPlayer == 2){aiThree.Hint(isStick);}
+    }
 }

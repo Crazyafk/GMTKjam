@@ -17,6 +17,8 @@ public class SuspicionMeter : MonoBehaviour
     [SerializeField]
     AIUIInterface susAiOne, susAiTwo;
 
+    FXManager fxmanager;
+
     int suspicion;
 
     Image image;
@@ -24,6 +26,8 @@ public class SuspicionMeter : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
+
+        fxmanager = GameObject.Find("GameManager").GetComponent<FXManager>();
 
         SetSuspicion(0);
     }
@@ -53,7 +57,12 @@ public class SuspicionMeter : MonoBehaviour
     }
     public bool TrySwap()
     {
-        return(TryAddSuspicion(swapCardCost));
+        if(TryAddSuspicion(swapCardCost))
+        {
+            fxmanager.SusSFX();
+            return true;
+        }
+        return false;
     }
     public bool TryHint()
     {

@@ -7,11 +7,13 @@ public class AIUIInterface : MonoBehaviour
     public List<Card> showndeck;
     public string spawnRootPath;
     public GameObject cardPrefab;
+    public Color playingColour, stickColour, bustColour;
     Transform spawnOne, spawnTwo, spawnThree, spawnFour, spawnFive, spawnSix, spawnSeven;
     GameObject cardOne, cardTwo, cardThree, cardFour, cardFive, cardSix, cardSeven;
     CardController cardConOne, cardConTwo, cardConThree, cardConFour, cardConFive, cardConSix, cardConSeven;
     AI ai;
     Animator animator;
+    SpriteRenderer playerSR;
 
     void Start()
     {
@@ -29,11 +31,31 @@ public class AIUIInterface : MonoBehaviour
         ai = GetComponent<AI>();
 
         animator = transform.Find("playerSprite").GetComponent<Animator>();
+        playerSR = animator.GetComponent<SpriteRenderer>();
     }
 
     public void UpdateUI()
     {
         UpdateDeck();
+        UpdateColour();
+    }
+
+    void UpdateColour()
+    {
+        Color colour = playingColour;
+
+        if(ai.status == AI.Status.Stuck){colour = stickColour;}
+        if(ai.status == AI.Status.Bust){colour = bustColour;}
+
+        playerSR.color = colour;
+
+        cardConOne.ChangeColour(colour);
+        cardConTwo.ChangeColour(colour);
+        if(cardConThree != null){cardConThree.ChangeColour(colour);}
+        if(cardConFour != null){cardConFour.ChangeColour(colour);}
+        if(cardConFive != null){cardConFive.ChangeColour(colour);}
+        if(cardConSix != null){cardConSix.ChangeColour(colour);}
+        if(cardConSeven != null){cardConSeven.ChangeColour(colour);}
     }
 
     public void Hand()

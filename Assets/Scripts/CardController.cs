@@ -67,4 +67,8 @@ public class CardController : MonoBehaviour
         slidetime = _time;
         slidetimer = 0f;
     }
+    public void ChangeColour(Color colour)
+    {
+        cardFront.color = colour;
+    }
 }

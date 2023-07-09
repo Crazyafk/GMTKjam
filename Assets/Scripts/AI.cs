@@ -15,10 +15,12 @@ public class AI : MonoBehaviour
 
     CardManager cardManager;
     GameManager gameManager;
-    FXManager fxmanager;
+    public FXManager fxmanager;
     AIUIInterface aIUIInterface;
     public List<Card> deck;
     public int value;
+    bool isHinted;
+    bool hintIsStick;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class AI : MonoBehaviour
         {
             status = Status.Bust;
             print("Bust!");
+            fxmanager.Bust(id);
         }
 
         aIUIInterface.UpdateUI();
@@ -48,24 +51,45 @@ public class AI : MonoBehaviour
         print("AI #"+id.ToString()+"'s Turn!");
         if(status != Status.Playing){return false;}
 
-        if(doStick.RollProb(value))
+        if(isHinted)
         {
-            status = Status.Stuck;
-            UpdateThings();
-            print("Stick!");
-            fxmanager.Stick(id);
-            aIUIInterface.Think();
+            isHinted = false;
+            if(hintIsStick)
+            {
+                Stick();
+            }else{
+                Twist();
+            }
         }
-        else
-        {
-            Card newCard = gameManager.TakeCard();
-            deck.Add(newCard);
-            print("Twist! Drawn: "+newCard.name);
-            UpdateThings();
-            print("Value: "+value);
-            aIUIInterface.Hand();
+        else{
+            if(doStick.RollProb(value))
+            {
+                Stick();
+            }
+            else
+            {
+                Twist();
+            }
         }
         return true;
+    }
+    void Stick()
+    {
+        status = Status.Stuck;
+        UpdateThings();
+        print("Stick!");
+        fxmanager.Stick(id);
+        aIUIInterface.Think();
+    }
+    void Twist()
+    {
+        Card newCard = gameManager.TakeCard();
+        deck.Add(newCard);
+        print("Twist! Drawn: "+newCard.name);
+        UpdateThings();
+        print("Value: "+value);
+        fxmanager.Twist(id);
+        aIUIInterface.Hand();
     }
     public void Win()
     {
@@ -83,5 +107,10 @@ public class AI : MonoBehaviour
         status = Status.Playing;
         deck = cardManager.GetStartingDeck();
         UpdateThings();
+    }
+    public void Hint(bool isStick)
+    {
+        isHinted = true;
+        hintIsStick = isStick;
     }
 }

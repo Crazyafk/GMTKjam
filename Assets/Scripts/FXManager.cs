@@ -5,7 +5,9 @@ using UnityEngine;
 public class FXManager : MonoBehaviour
 {
     public GameObject shuffle;
-    public GameObject stick;
+    public GameObject stick, bust, twist;
+    public GameObject sussfx;
+    public GameObject speech;
 
     public string spawnRootPath;
 
@@ -25,12 +27,32 @@ public class FXManager : MonoBehaviour
     }
     public void Stick(int id)
     {
+        Instantiate(stick, idSpawn(id), Quaternion.identity);
+    }
+    public void Bust(int id)
+    {
+        Instantiate(bust, idSpawn(id), Quaternion.identity);
+    }
+    public void Twist(int id)
+    {
+        Instantiate(twist, idSpawn(id), Quaternion.identity);
+    }
+    public void SusSFX()
+    {
+        Instantiate(sussfx);
+    }
+    public void Speech()
+    {
+        Instantiate(speech);
+    }
+    Vector3 idSpawn(int id)
+    {
         Vector3 spawnPos = Vector3.zero;
 
         if(id == 1){spawnPos = spawnOne.position;}
         if(id == 2){spawnPos = spawnTwo.position;}
         if(id == 3){spawnPos = spawnThree.position;}
 
-        Instantiate(stick, spawnPos, Quaternion.identity);
+        return spawnPos;
     }
 }
