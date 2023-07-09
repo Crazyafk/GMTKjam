@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     int roundNo = 0;
     public AI aiOne, aiTwo, aiThree;
     public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
-    [HideInInspector]
     public int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
     int cardClickLast = 0; //which card was clicked last? for card swapping
     
@@ -49,17 +48,26 @@ public class GameManager : MonoBehaviour
             if(!aiThree.TakeTurn()){doAnotherTurn = true;}
         }
 
-        whichAiDueTurn = (whichAiDueTurn + 1) % 3;
-
         if(aiOne.status != AI.Status.Playing && aiTwo.status != AI.Status.Playing && aiThree.status != AI.Status.Playing)
         {
             EndRound();
+        }else{
+            IncrementTurn();
         }
 
         uimanager.UpdateThings();
 
         if(doAnotherTurn){NextTurn();}
         else{suspicionMeter.NextTurn();}
+    }
+
+    void IncrementTurn()
+    {
+        whichAiDueTurn = (whichAiDueTurn + 1) % 3;
+
+        if(whichAiDueTurn == 0 && aiOne.status != AI.Status.Playing){IncrementTurn();}
+        if(whichAiDueTurn == 1 && aiTwo.status != AI.Status.Playing){IncrementTurn();}
+        if(whichAiDueTurn == 2 && aiThree.status != AI.Status.Playing){IncrementTurn();}
     }
 
     void EndRound()
