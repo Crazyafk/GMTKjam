@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Queue<Card> toBeDealt;
 
     public int howManyRounds;
-    int roundNo = 0;
+    public int roundNo = 0;
     public AI aiOne, aiTwo, aiThree;
     public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
     public int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?

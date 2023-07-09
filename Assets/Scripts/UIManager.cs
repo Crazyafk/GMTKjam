@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public float swapSlideTime;
     public GameObject cardPrefab;
     Text valueOne, valueTwo, valueThree, pointsOne, pointsTwo, pointsThree;
+    Text currentRound, totalRound;
 
     void Start()
     {
@@ -36,6 +37,11 @@ public class UIManager : MonoBehaviour
         pointsOne = GameObject.Find("/Canvas/Points1").GetComponent<Text>();
         pointsTwo = GameObject.Find("/Canvas/Points2").GetComponent<Text>();
         pointsThree = GameObject.Find("/Canvas/Points3").GetComponent<Text>();
+
+        currentRound = GameObject.Find("/Canvas/RoundCounter/CurrentRound").GetComponent<Text>();
+        totalRound = GameObject.Find("/Canvas/RoundCounter/TotalRound").GetComponent<Text>();
+
+        totalRound.text = gameManager.howManyRounds.ToString();
     }
     public void UpdateThings()
     {
@@ -66,6 +72,8 @@ public class UIManager : MonoBehaviour
         pointsOne.text = gameManager.aiOne.points.ToString();
         pointsTwo.text = gameManager.aiTwo.points.ToString();
         pointsThree.text = gameManager.aiThree.points.ToString();
+
+        currentRound.text = gameManager.roundNo.ToString();
     }
     public void InitDealerCards()
     {
