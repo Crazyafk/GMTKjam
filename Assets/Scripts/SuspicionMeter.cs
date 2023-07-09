@@ -14,6 +14,9 @@ public class SuspicionMeter : MonoBehaviour
     [SerializeField]
     int perTurnDecay;
 
+    [SerializeField]
+    AIUIInterface susAiOne, susAiTwo;
+
     int suspicion;
 
     Image image;
@@ -34,6 +37,7 @@ public class SuspicionMeter : MonoBehaviour
         if(suspicion + _sus <= 45)
         {
             SetSuspicion(suspicion + _sus);
+            SusAI();
             return true;
         }
         return false;
@@ -54,5 +58,14 @@ public class SuspicionMeter : MonoBehaviour
     public bool TryHint()
     {
         return(TryAddSuspicion(hintCost));
+    }
+    void SusAI()
+    {
+        if(Random.Range(0f,2f) > 1)
+        {
+            susAiOne.Sus();
+        }else{
+            susAiTwo.Sus();
+        }
     }
 }

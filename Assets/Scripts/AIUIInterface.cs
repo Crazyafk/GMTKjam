@@ -11,6 +11,7 @@ public class AIUIInterface : MonoBehaviour
     GameObject cardOne, cardTwo, cardThree, cardFour, cardFive, cardSix, cardSeven;
     CardController cardConOne, cardConTwo, cardConThree, cardConFour, cardConFive, cardConSix, cardConSeven;
     AI ai;
+    Animator animator;
 
     void Start()
     {
@@ -26,11 +27,34 @@ public class AIUIInterface : MonoBehaviour
         showndeck = new List<Card>(new Card[7]);
 
         ai = GetComponent<AI>();
+
+        animator = transform.Find("playerSprite").GetComponent<Animator>();
     }
 
     public void UpdateUI()
     {
         UpdateDeck();
+    }
+
+    public void Hand()
+    {
+        animator.SetTrigger("Hand");
+    }
+    public void Anger()
+    {
+        animator.SetTrigger("Anger");
+    }
+    public void Sus()
+    {
+        animator.SetTrigger("Sus");
+    }
+    public void Think()
+    {
+        animator.SetTrigger("Think");
+    }
+    public void Win()
+    {
+        animator.SetTrigger("Win");
     }
 
     void UpdateDeck()

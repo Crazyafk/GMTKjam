@@ -54,6 +54,7 @@ public class AI : MonoBehaviour
             UpdateThings();
             print("Stick!");
             fxmanager.Stick(id);
+            aIUIInterface.Think();
         }
         else
         {
@@ -62,6 +63,7 @@ public class AI : MonoBehaviour
             print("Twist! Drawn: "+newCard.name);
             UpdateThings();
             print("Value: "+value);
+            aIUIInterface.Hand();
         }
         return true;
     }
@@ -70,6 +72,11 @@ public class AI : MonoBehaviour
         points += 1;
         print("AI #"+id.ToString()+" Wins this round!");
         UpdateThings();
+        aIUIInterface.Win();
+    }
+    public void Lose()
+    {
+        aIUIInterface.Anger();
     }
     public void NewRound()
     {

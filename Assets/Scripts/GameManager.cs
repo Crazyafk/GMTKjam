@@ -83,9 +83,9 @@ public class GameManager : MonoBehaviour
             winningAIid = 3;
         }
 
-        if(winningAIid == 1){aiOne.Win();}
-        if(winningAIid == 2){aiTwo.Win();}
-        if(winningAIid == 3){aiThree.Win();}
+        if(winningAIid == 1){aiOne.Win();aiTwo.Lose();aiThree.Lose();}
+        if(winningAIid == 2){aiTwo.Win();aiOne.Lose();aiThree.Lose();}
+        if(winningAIid == 3){aiThree.Win();aiOne.Lose();aiTwo.Lose();}
 
         print("Current Scores:");
         print(aiOne.points);
