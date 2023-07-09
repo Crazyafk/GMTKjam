@@ -15,7 +15,7 @@ public class SwitchScene : MonoBehaviour
     }
     void Update()
     {
-        if(autoSwitchAfterTime && Time.time >= autoTime)
+        if(autoSwitchAfterTime && Time.timeSinceLevelLoad >= autoTime)
         {
             Scene(autoScene);
         }
