@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoSwitchAfterTime: 1
   autoScene: SampleScene
-  autoTime: 29
+  autoTime: 30
 --- !u!1 &1371671479
 GameObject:
   m_ObjectHideFlags: 0

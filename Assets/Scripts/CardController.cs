@@ -21,6 +21,7 @@ public class CardController : MonoBehaviour
     int sliding; //0 - none, 1 - slide right, 2 - slide out
     Vector3 slideOrigin, slideDestination;
     float slidetime, slidetimer;
+    public Color selectColor, mouseOverColor;
     public bool testSlideTrigger;
 
     void Awake()
@@ -95,5 +96,9 @@ public class CardController : MonoBehaviour
         {
             cardFront.color = colour;
         }
+    }
+    public bool IsMouseOverColour()
+    {
+        return(cardFront.color == mouseOverColor);
     }
 }

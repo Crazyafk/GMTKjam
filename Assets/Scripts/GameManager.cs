@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int whichAiIsPlayer; //0-2 //Which AI is do we want to win?
     public int whichAiDueTurn; //0-2 //Which AI is due to take their turn next?
     int cardClickLast = 0; //which card was clicked last? for card swapping
+    CardController contClickLast;
     
     void Start()
     {
@@ -170,20 +171,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ClickCard(int id)
+    public void ClickCard(int id, CardController thisCard)
     {
-        if(cardClickLast == 0)
+        if(cardClickLast == 0) //First Click
         {
             cardClickLast = id;
+            contClickLast = thisCard;
+            contClickLast.ChangeColour(contClickLast.selectColor);
         }
-        else if(cardClickLast == id)
+        else if(cardClickLast == id) //Cancel
         {
             cardClickLast = 0;
+            contClickLast.ChangeColour(Color.white);
         }
-        else
+        else //Swap
         {
             SwapCards(id, cardClickLast);
             cardClickLast = 0;
+            contClickLast.ChangeColour(Color.white);
         }
     }
     void SwapCards(int a, int b)

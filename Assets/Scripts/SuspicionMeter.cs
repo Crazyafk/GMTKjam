@@ -20,6 +20,12 @@ public class SuspicionMeter : MonoBehaviour
     FXManager fxmanager;
 
     int suspicion;
+    bool isShaking;
+    float shakeTimer;
+
+    public float shakeLength, minShakeScale, maxShakeScale;
+
+    Vector3 originalScale;
 
     Image image;
 
@@ -30,6 +36,22 @@ public class SuspicionMeter : MonoBehaviour
         fxmanager = GameObject.Find("GameManager").GetComponent<FXManager>();
 
         SetSuspicion(0);
+
+        originalScale = transform.localScale;
+    }
+    void Update()
+    {
+        if(isShaking)
+        {
+            shakeTimer += Time.deltaTime;
+            if(shakeTimer >= shakeLength)
+            {
+                isShaking = false;
+            }
+
+            float scaleMod = Random.Range(minShakeScale, maxShakeScale);
+            transform.localScale = originalScale * scaleMod;
+        }
     }
     public void SetSuspicion(int _sus)
     {
@@ -44,6 +66,8 @@ public class SuspicionMeter : MonoBehaviour
             SusAI();
             return true;
         }
+        fxmanager.SusTooHigh();
+        Shake();
         return false;
     }
     public void NextTurn()
@@ -76,5 +100,10 @@ public class SuspicionMeter : MonoBehaviour
         }else{
             susAiTwo.Sus();
         }
+    }
+    void Shake()
+    {
+        isShaking = true;
+        shakeTimer = 0f;
     }
 }

@@ -1048,7 +1048,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1562,6 +1562,7 @@ MonoBehaviour:
   bust: {fileID: 8413294911323533572, guid: 6330ad6a46aacdf4f9b28d1829a50642, type: 3}
   twist: {fileID: 8413294911323533572, guid: 4d78b888beced5346b64192974f59838, type: 3}
   sussfx: {fileID: 8413294911323533572, guid: e5184178b39d88345ae83ae3b5ed1a88, type: 3}
+  susTooHigh: {fileID: 8413294911323533572, guid: 3d034009c21a0ab41b662afab4a0fe1d, type: 3}
   speech: {fileID: 8413294911323533572, guid: fa82f8041322e0748a989b4b4e8655a8, type: 3}
   roundWon: {fileID: 8413294911323533572, guid: 43f387c301014954f8ca3443318f1111, type: 3}
   roundLost: {fileID: 8413294911323533572, guid: caee25b2c71e7f1488b603240285f5e4, type: 3}
@@ -4518,6 +4519,9 @@ MonoBehaviour:
   perTurnDecay: 2
   susAiOne: {fileID: 1896319111}
   susAiTwo: {fileID: 481270290}
+  shakeLength: 1
+  minShakeScale: 0.96
+  maxShakeScale: 1.04
 --- !u!1001 &1653308437
 PrefabInstance:
   m_ObjectHideFlags: 0

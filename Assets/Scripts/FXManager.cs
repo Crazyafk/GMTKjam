@@ -6,7 +6,7 @@ public class FXManager : MonoBehaviour
 {
     public GameObject shuffle;
     public GameObject stick, bust, twist;
-    public GameObject sussfx;
+    public GameObject sussfx, susTooHigh;
     public GameObject speech;
     public GameObject roundWon, roundLost;
 
@@ -41,6 +41,10 @@ public class FXManager : MonoBehaviour
     public void SusSFX()
     {
         Instantiate(sussfx);
+    }
+    public void SusTooHigh()
+    {
+        Instantiate(susTooHigh);
     }
     public void Speech()
     {
