@@ -8,6 +8,7 @@ public class FXManager : MonoBehaviour
     public GameObject stick, bust, twist;
     public GameObject sussfx;
     public GameObject speech;
+    public GameObject roundWon, roundLost;
 
     public string spawnRootPath;
 
@@ -44,6 +45,14 @@ public class FXManager : MonoBehaviour
     public void Speech()
     {
         Instantiate(speech);
+    }
+    public void RoundWon()
+    {
+        Instantiate(roundWon);
+    }
+    public void RoundLost()
+    {
+        Instantiate(roundLost);
     }
     Vector3 idSpawn(int id)
     {

@@ -95,6 +95,9 @@ public class GameManager : MonoBehaviour
         if(winningAIid == 2){aiTwo.Win();aiOne.Lose();aiThree.Lose();}
         if(winningAIid == 3){aiThree.Win();aiOne.Lose();aiTwo.Lose();}
 
+        if(winningAIid - 1 == whichAiIsPlayer){fxmanager.RoundWon();}
+        else{fxmanager.RoundLost();}
+
         print("Current Scores:");
         print(aiOne.points);
         print(aiTwo.points);
@@ -160,8 +163,10 @@ public class GameManager : MonoBehaviour
         if(winningAIid - 1 == whichAiIsPlayer)
         {
             print("Player Wins!");
+            uimanager.GameWin();
         }else{
             print("Player Loses!");
+            uimanager.GameLose();
         }
     }
 

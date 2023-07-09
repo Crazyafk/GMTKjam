@@ -18,7 +18,7 @@ public class CardController : MonoBehaviour
     SpriteRenderer cardFront;
     Animator animator;
     AudioSource audio;
-    int sliding; //0 - none, 1 - slide right
+    int sliding; //0 - none, 1 - slide right, 2 - slide out
     Vector3 slideOrigin, slideDestination;
     float slidetime, slidetimer;
     public bool testSlideTrigger;
@@ -37,9 +37,23 @@ public class CardController : MonoBehaviour
         {
             transform.position = Utility.SmoothLerp(slideOrigin, slideDestination, slidetimer / slidetime);
 
+            if(sliding == 2)
+            {
+                Color colour = cardFront.color;
+                colour.a = Mathf.Lerp(1f, 0f, slidetimer / slidetime);
+                cardFront.color = colour;
+
+                print(cardFront.color.a);
+            }
+
             slidetimer += Time.deltaTime;
             if(slidetimer >= slidetime)
             {
+                if(sliding == 2)
+                {
+                    Destroy(this.gameObject);
+                }
+
                 transform.position = slideDestination;
                 sliding = 0;
             }
@@ -67,8 +81,19 @@ public class CardController : MonoBehaviour
         slidetime = _time;
         slidetimer = 0f;
     }
+    public void SlideOut(Vector3 _origin, Vector3 _dest, float _time)
+    {
+        sliding = 2;
+        slideOrigin = _origin;
+        slideDestination = _dest;
+        slidetime = _time;
+        slidetimer = 0f;
+    }
     public void ChangeColour(Color colour)
     {
-        cardFront.color = colour;
+        if(sliding != 2)
+        {
+            cardFront.color = colour;
+        }
     }
 }

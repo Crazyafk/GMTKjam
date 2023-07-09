@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     GameObject nextUpOne, nextUpTwo, nextUpThree;
-    Transform spawnOne, spawnTwo, spawnThree;
+    Transform spawnOne, spawnTwo, spawnThree, moveOut;
     GameManager gameManager;
     CardController cardOne, cardTwo, cardThree;
     DealerCard cardDOne, cardDTwo, cardDThree;
@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject cardPrefab;
     Text valueOne, valueTwo, valueThree, pointsOne, pointsTwo, pointsThree;
     Text currentRound, totalRound;
+    GameObject gameOver, gameWin, gameLose;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
         spawnOne = root.Find("CardSlotOne");
         spawnTwo = root.Find("CardSlotTwo");
         spawnThree = root.Find("CardSlotThree");
+        moveOut = root.Find("CardSlotOut");
 
         valueOne = GameObject.Find("/Canvas/Value1").GetComponent<Text>();
         valueTwo = GameObject.Find("/Canvas/Value2").GetComponent<Text>();
@@ -40,6 +42,14 @@ public class UIManager : MonoBehaviour
 
         currentRound = GameObject.Find("/Canvas/RoundCounter/CurrentRound").GetComponent<Text>();
         totalRound = GameObject.Find("/Canvas/RoundCounter/TotalRound").GetComponent<Text>();
+
+        gameOver = GameObject.Find("/Canvas/GameOver");
+        gameWin = GameObject.Find("/Canvas/GameOver/Won");
+        gameLose = GameObject.Find("/Canvas/GameOver/Lost");
+
+        gameWin.SetActive(false);
+        gameLose.SetActive(false);
+        gameOver.SetActive(false);
 
         totalRound.text = gameManager.howManyRounds.ToString();
     }
@@ -75,6 +85,16 @@ public class UIManager : MonoBehaviour
 
         currentRound.text = gameManager.roundNo.ToString();
     }
+    public void GameWin()
+    {
+        gameOver.SetActive(true);
+        gameWin.SetActive(true);
+    }
+    public void GameLose()
+    {
+        gameOver.SetActive(true);
+        gameLose.SetActive(true);
+    }
     public void InitDealerCards()
     {
         Card[] viewCards = gameManager.toBeDealt.ToArray();
@@ -101,7 +121,7 @@ public class UIManager : MonoBehaviour
     {
         print("slide");
 
-        Destroy(cardGThree);
+        cardThree.SlideOut(spawnThree.position, moveOut.position, slideRightTime);
 
         cardTwo.SlideRight(spawnTwo.position, spawnThree.position, slideRightTime);
         cardGThree = cardGTwo;
